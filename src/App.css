@@ -1,0 +1,122 @@
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.stage-highlight {
+  animation: pulse 1s infinite;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.4);
+}
+
+.stage-container {
+  transition: all 0.3s ease;
+  width: 110px;
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.stage-container:hover {
+  transform: translateY(-5px);
+}
+
+.stage-complete {
+  position: relative;
+}
+
+.stage-complete::after {
+  content: "✓";
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background-color: #10B981;
+  color: white;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.panel-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.panel-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.panel-exit {
+  opacity: 1;
+}
+
+.panel-exit-active {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 300ms, transform 300ms;
+}
+
+/* Event Log Accordion Styles */
+.event-log-container {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.event-log-header {
+  position: relative;
+  z-index: 2;
+}
+
+.event-log-content {
+  transition: max-height 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+  max-height: 0;
+  opacity: 0;
+  transform: translateX(-20px);
+  overflow: hidden;
+}
+
+.event-log-container.expanded {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.event-log-container.expanded .event-log-content {
+  max-height: 400px;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.event-log-container.collapsed {
+  width: auto;
+}
+
+.event-log-container.collapsed .event-log-content {
+  max-height: 0;
+  opacity: 0;
+}
+
+@media (min-width: 768px) {
+  .event-log-container.expanded {
+    width: 35%;
+    margin-bottom: 0;
+  }
+  
+  .event-log-container.collapsed {
+    width: auto;
+  }
+}
